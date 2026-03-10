@@ -9,6 +9,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import TestePezinho from './pages/TestePezinho';
 import ServicesPage from './pages/ServicesPage';
 import Logo from './components/Logo';
+import heroImage from './assets/hero.png';
 import { 
   Heart, 
   Baby, 
@@ -54,7 +55,7 @@ const Navbar = () => {
         
         <div className="hidden md:flex items-center gap-12">
           {menuItems.map((item) => (
-            <a key={item.name} href={item.href} className="text-[11px] uppercase tracking-[0.2em] font-medium text-ink/60 hover:text-brand-terracotta transition-colors">
+            <a key={item.name} href={item.href} className="text-[14px] uppercase tracking-[0.2em] font-medium text-ink/60 hover:text-brand-terracotta transition-colors">
               {item.name}
             </a>
           ))}
@@ -112,10 +113,9 @@ const Hero = () => {
     <section id="inicio" className="h-screen relative flex items-center overflow-hidden">
       {/* Full Screen Hero Image */}
       <img 
-        src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?q=80&w=2070&auto=format&fit=crop" 
+        src={heroImage}
         alt="Mãe segurando bebê recém-nascido em momento de carinho - Mamatetê Consultoria" 
         className="absolute inset-0 w-full h-full object-cover"
-        referrerPolicy="no-referrer"
       />
       <div className="absolute inset-0 bg-black/20" />
       
@@ -138,20 +138,6 @@ const Hero = () => {
           </div>
         </motion.div>
       </div>
-
-      {/* Floating Glass Card */}
-      <motion.div 
-        initial={{ opacity: 0, x: 50 }}
-        animate={{ opacity: 1, x: 0 }}
-        transition={{ delay: 0.5, duration: 1 }}
-        className="absolute bottom-12 right-12 hidden lg:block"
-      >
-        <div className="glass-card p-8 rounded-2xl max-w-xs">
-          <p className="text-[10px] uppercase tracking-widest text-ink/60 mb-4">Próxima Turma</p>
-          <p className="text-xl font-sans font-medium mb-4">Preparação para o Parto & Amamentação</p>
-          <a href="#contact" className="text-xs font-bold border-b border-ink pb-1 hover:text-brand-terracotta hover:border-brand-terracotta transition-all">Saber mais</a>
-        </div>
-      </motion.div>
     </section>
   );
 };
