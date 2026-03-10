@@ -93,20 +93,22 @@ const ServicesPage: React.FC = () => {
         </span>
       </header>
 
-      <section className="section-padding">
-        <div className="max-w-[1600px] mx-auto">
-          <div className="max-w-2xl space-y-6 mb-20">
-            <p className="text-[10px] uppercase tracking-[0.4em] font-bold text-brand-terracotta">Nossa Especialidade</p>
-            <h2 className="text-5xl md:text-7xl">Todos os nossos <br /> <span>serviços.</span></h2>
-          </div>
+      <main>
+        <section className="section-padding">
+          <div className="max-w-[1600px] mx-auto">
+            <div className="max-w-2xl space-y-6 mb-20">
+              <p className="text-[10px] uppercase tracking-[0.4em] font-bold text-brand-terracotta">Nossa Especialidade</p>
+              <h2 className="text-5xl md:text-7xl">Todos os nossos <br /> <span>serviços.</span></h2>
+            </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            {services.map((service, i) => (
-              <ServiceCard key={i} service={service} />
-            ))}
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {services.map((service, i) => (
+                <ServiceCard key={i} service={service} />
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
 
       {/* Footer */}
       <footer className="py-20 px-8 border-t border-brand-beige text-center">

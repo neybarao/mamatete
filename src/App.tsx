@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { HashRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'motion/react';
 import TestePezinho from './pages/TestePezinho';
 import ServicesPage from './pages/ServicesPage';
@@ -30,6 +30,7 @@ import {
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -37,17 +38,24 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const menuItems = [
+    { name: 'Início', href: '#inicio' },
+    { name: 'Sobre', href: '#sobre' },
+    { name: 'Serviços', href: '#servicos' },
+    { name: 'Contato', href: '#contato' }
+  ];
+
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? 'bg-brand-cream/80 backdrop-blur-md py-4 shadow-sm' : 'bg-transparent py-8'}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled || isOpen ? 'bg-brand-cream/80 backdrop-blur-md py-4 shadow-sm' : 'bg-transparent py-8'}`}>
       <div className="max-w-[1600px] mx-auto px-8 md:px-16 flex justify-between items-center">
-        <a href="#inicio" className="text-ink hover:text-brand-terracotta transition-colors">
+        <a href="#inicio" className="text-ink hover:text-brand-terracotta transition-colors" onClick={() => setIsOpen(false)}>
           <Logo className="h-20" />
         </a>
         
         <div className="hidden md:flex items-center gap-12">
-          {['Início', 'Sobre', 'Serviços', 'Contato'].map((item) => (
-            <a key={item} href={item === 'Serviços' ? '#teste-do-pezinho' : `#${item.toLowerCase().replace('í', 'i').replace('ç', 's')}`} className="text-[11px] uppercase tracking-[0.2em] font-medium text-ink/60 hover:text-brand-terracotta transition-colors">
-              {item}
+          {menuItems.map((item) => (
+            <a key={item.name} href={item.href} className="text-[11px] uppercase tracking-[0.2em] font-medium text-ink/60 hover:text-brand-terracotta transition-colors">
+              {item.name}
             </a>
           ))}
           <a href="https://wa.me/5567998285845" target="_blank" rel="noreferrer" className="btn-pill bg-ink text-white hover:bg-brand-terracotta">
@@ -55,10 +63,46 @@ const Navbar = () => {
           </a>
         </div>
         
-        <button className="md:hidden text-ink">
-          <Menu size={24} />
+        <button 
+          className="md:hidden text-ink z-50 relative"
+          onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle Menu"
+        >
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
+
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            className="absolute top-full left-0 right-0 bg-brand-cream border-t border-brand-beige p-8 md:hidden flex flex-col gap-6 shadow-xl"
+          >
+            {menuItems.map((item) => (
+              <a 
+                key={item.name} 
+                href={item.href} 
+                onClick={() => setIsOpen(false)}
+                className="text-lg font-sans text-ink hover:text-brand-terracotta transition-colors"
+              >
+                {item.name}
+              </a>
+            ))}
+            <a 
+              href="https://wa.me/5567998285845" 
+              target="_blank" 
+              rel="noreferrer" 
+              className="btn-pill bg-ink text-white text-center hover:bg-brand-terracotta"
+              onClick={() => setIsOpen(false)}
+            >
+              Agendar
+            </a>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 };
@@ -69,7 +113,7 @@ const Hero = () => {
       {/* Full Screen Hero Image */}
       <img 
         src="https://images.unsplash.com/photo-1555252333-9f8e92e65df9?q=80&w=2070&auto=format&fit=crop" 
-        alt="Maternidade" 
+        alt="Mãe segurando bebê recém-nascido em momento de carinho - Mamatetê Consultoria" 
         className="absolute inset-0 w-full h-full object-cover"
         referrerPolicy="no-referrer"
       />
@@ -125,7 +169,7 @@ const About = () => {
           >
             <img 
               src="https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=2070&auto=format&fit=crop" 
-              alt="Consultoria" 
+              alt="Consultora de amamentação Mamatetê prestando apoio a uma mãe" 
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
             />
@@ -206,7 +250,7 @@ const Services = () => {
           <div className="img-rounded aspect-video relative overflow-hidden">
             <img 
               src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=2070&auto=format&fit=crop" 
-              alt="Teste do Pezinho" 
+              alt="Pezinho de bebê sendo preparado para o Teste do Pezinho - Mamatetê" 
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
             />
@@ -376,7 +420,7 @@ const Contact = () => {
           <div className="relative img-rounded aspect-square overflow-hidden">
             <img 
               src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=2070&auto=format&fit=crop" 
-              alt="Consultório" 
+              alt="Ambiente acolhedor do consultório Mamatetê em Campo Grande" 
               className="w-full h-full object-cover"
               referrerPolicy="no-referrer"
             />
@@ -427,11 +471,13 @@ const Home = () => {
   return (
     <div className="min-h-screen selection:bg-brand-sage selection:text-ink">
       <Navbar />
-      <Hero />
-      <About />
-      <Quote />
-      <Services />
-      <Contact />
+      <main>
+        <Hero />
+        <About />
+        <Quote />
+        <Services />
+        <Contact />
+      </main>
       <Footer />
     </div>
   );

@@ -380,65 +380,67 @@ const TestePezinho: React.FC = () => {
         </span>
       </header>
 
-      {/* Hero Section */}
-      <section className="section-padding">
-        <div className="max-w-7xl mx-auto text-center space-y-8">
-          <p className="text-[10px] uppercase tracking-[0.4em] font-bold text-brand-terracotta">Exames Neonatais</p>
-          <h1 className="text-6xl md:text-8xl leading-tight">Teste do <span>Pezinho</span></h1>
-          <p className="max-w-2xl mx-auto text-lg text-ink/70 font-light leading-relaxed">
-            Um dos exames mais importantes para o seu bebê. Realizado através da coleta de gotinhas de sangue do calcanhar, permite identificar precocemente diversas doenças.
-          </p>
-        </div>
-      </section>
+      <main>
+        {/* Hero Section */}
+        <section className="section-padding">
+          <div className="max-w-7xl mx-auto text-center space-y-8">
+            <p className="text-[10px] uppercase tracking-[0.4em] font-bold text-brand-terracotta">Exames Neonatais</p>
+            <h1 className="text-6xl md:text-8xl leading-tight">Teste do <span>Pezinho</span></h1>
+            <p className="max-w-2xl mx-auto text-lg text-ink/70 font-light leading-relaxed">
+              Um dos exames mais importantes para o seu bebê. Realizado através da coleta de gotinhas de sangue do calcanhar, permite identificar precocemente diversas doenças.
+            </p>
+          </div>
+        </section>
 
-      {/* Plans Section */}
-      <section className="pb-24 px-8 md:px-16">
-        <div className="max-w-[1600px] mx-auto grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
-          {plans.map((plan, i) => (
-            <motion.div
-              key={plan.name}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              className="bg-white rounded-3xl p-8 shadow-sm border border-brand-beige/50 flex flex-col h-full"
-            >
-              <div className="mb-8">
-                <h3 className="text-2xl font-sans text-ink mb-2">{plan.name}</h3>
-                <p className="text-3xl font-light text-brand-terracotta">{plan.price}</p>
-              </div>
-              
-              <div className="flex-grow space-y-4 mb-8">
-                <p className="text-[10px] uppercase tracking-widest font-bold text-ink/40">Doenças Cobertas ({plan.diseases.length})</p>
-                <ul className="space-y-3">
-                  {plan.diseases.slice(0, 10).map((disease, idx) => (
-                    <li key={idx} className="flex gap-3 text-xs text-ink/70 leading-tight">
-                      <Check size={14} className="text-brand-sage shrink-0 mt-0.5" />
-                      <span>{disease}</span>
-                    </li>
-                  ))}
-                </ul>
-                {plan.diseases.length > 10 && (
-                  <button 
-                    onClick={() => setSelectedPlan(plan)}
-                    className="text-[11px] font-bold text-brand-terracotta uppercase tracking-widest hover:text-ink transition-colors pt-2 flex items-center gap-2"
-                  >
-                    + {plan.diseases.length - 10} doenças testadas
-                  </button>
-                )}
-              </div>
-
-              <a 
-                href={`https://wa.me/5567998285845?text=Olá! Gostaria de agendar o Teste do Pezinho plano ${plan.name}`}
-                target="_blank"
-                rel="noreferrer"
-                className="btn-pill bg-ink text-white w-full text-center hover:bg-brand-terracotta flex items-center justify-center gap-2"
+        {/* Plans Section */}
+        <section className="pb-24 px-8 md:px-16">
+          <div className="max-w-[1600px] mx-auto grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-8">
+            {plans.map((plan, i) => (
+              <motion.div
+                key={plan.name}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.1 }}
+                className="bg-white rounded-3xl p-8 shadow-sm border border-brand-beige/50 flex flex-col h-full"
               >
-                <MessageCircle size={16} /> Agendar
-              </a>
-            </motion.div>
-          ))}
-        </div>
-      </section>
+                <div className="mb-8">
+                  <h3 className="text-2xl font-sans text-ink mb-2">{plan.name}</h3>
+                  <p className="text-3xl font-light text-brand-terracotta">{plan.price}</p>
+                </div>
+                
+                <div className="flex-grow space-y-4 mb-8">
+                  <p className="text-[10px] uppercase tracking-widest font-bold text-ink/40">Doenças Cobertas ({plan.diseases.length})</p>
+                  <ul className="space-y-3">
+                    {plan.diseases.slice(0, 10).map((disease, idx) => (
+                      <li key={idx} className="flex gap-3 text-xs text-ink/70 leading-tight">
+                        <Check size={14} className="text-brand-sage shrink-0 mt-0.5" />
+                        <span>{disease}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  {plan.diseases.length > 10 && (
+                    <button 
+                      onClick={() => setSelectedPlan(plan)}
+                      className="text-[11px] font-bold text-brand-terracotta uppercase tracking-widest hover:text-ink transition-colors pt-2 flex items-center gap-2"
+                    >
+                      + {plan.diseases.length - 10} doenças testadas
+                    </button>
+                  )}
+                </div>
+
+                <a 
+                  href={`https://wa.me/5567998285845?text=Olá! Gostaria de agendar o Teste do Pezinho plano ${plan.name}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-pill bg-ink text-white w-full text-center hover:bg-brand-terracotta flex items-center justify-center gap-2"
+                >
+                  <MessageCircle size={16} /> Agendar
+                </a>
+              </motion.div>
+            ))}
+          </div>
+        </section>
+      </main>
 
       {/* Footer */}
       <footer className="py-20 px-8 border-t border-brand-beige text-center">
