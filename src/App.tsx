@@ -9,7 +9,13 @@ import { motion, AnimatePresence } from 'motion/react';
 import TestePezinho from './pages/TestePezinho';
 import ServicesPage from './pages/ServicesPage';
 import Logo from './components/Logo';
+import aboutImage from './assets/mmtt-insta.png';
 import heroImage from './assets/hero.png';
+import pezinhosImage from './assets/pezinhos.png';
+import atendimentoDomiciliarImage from './assets/atendimento-domiciliar.jpg';
+import consultoriaAmamentacaoImage from './assets/consultoria-amamentacao.jpg';
+import babyImage from './assets/baby.jpg';
+import cursosImage from './assets/cursos.jpg';
 import { 
   Heart, 
   Baby, 
@@ -47,7 +53,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled || isOpen ? 'bg-brand-cream/80 backdrop-blur-md py-4 shadow-sm' : 'bg-transparent py-8'}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled || isOpen ? 'bg-brand-cream/80 backdrop-blur-md text-brand-ink py-4 shadow-sm' : 'bg-transparent text-brand-cream py-8'}`}>
       <div className="max-w-[1600px] mx-auto px-8 md:px-16 flex justify-between items-center">
         <a href="#inicio" className="text-ink hover:text-brand-terracotta transition-colors" onClick={() => setIsOpen(false)}>
           <Logo className="h-20" />
@@ -55,7 +61,7 @@ const Navbar = () => {
         
         <div className="hidden md:flex items-center gap-12">
           {menuItems.map((item) => (
-            <a key={item.name} href={item.href} className="text-[14px] uppercase tracking-[0.2em] font-medium text-ink/60 hover:text-brand-terracotta transition-colors">
+            <a key={item.name} href={item.href} className="text-[14px] uppercase tracking-[0.2em] font-medium hover:text-brand-terracotta transition-colors">
               {item.name}
             </a>
           ))}
@@ -126,10 +132,10 @@ const Hero = () => {
           transition={{ duration: 1, ease: "easeOut" }}
           className="max-w-3xl"
         >
-          <p className="text-white/90 text-[10px] uppercase tracking-[0.4em] font-bold mb-6">Consultoria Especializada</p>
-          <h1 className="text-6xl md:text-9xl text-white leading-[0.9] mb-8">
-            Onde o cuidado <br />
-            <span className="font-light">encontra a paz.</span>
+          <p className="text-white/90 text-[14px] uppercase tracking-[0.4em] font-bold mb-6">Consultoria Especializada</p>
+          <h1 className="text-2xl md:text-8xl text-white leading-[0.9] mb-8">
+            Especialistas em amamentação.<br />
+            Parceiras na sua história.
           </h1>
           <div className="flex gap-6">
             <a href="#servicos" className="btn-pill bg-white text-ink hover:bg-brand-sage">
@@ -154,10 +160,9 @@ const About = () => {
             className="img-rounded aspect-[4/5] relative"
           >
             <img 
-              src="https://images.unsplash.com/photo-1519689680058-324335c77eba?q=80&w=2070&auto=format&fit=crop" 
-              alt="Consultora de amamentação Mamatetê prestando apoio a uma mãe" 
+              src={aboutImage} 
+              alt="Consultoras da Mamatetê acolhendo famílias na jornada da amamentação" 
               className="w-full h-full object-cover"
-              referrerPolicy="no-referrer"
             />
           </motion.div>
           
@@ -201,19 +206,19 @@ const Services = () => {
     { 
       title: 'Atendimento Domiciliar', 
       desc: 'Conforto e segurança no ambiente familiar para mãe e bebê.',
-      img: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=2070&auto=format&fit=crop',
+      img: atendimentoDomiciliarImage,
       icon: <HomeIcon size={24} />
     },
     { 
       title: 'Consultoria em Amamentação', 
       desc: 'Apoio técnico e emocional para uma amamentação tranquila.',
-      img: 'https://images.unsplash.com/photo-1555252333-9f8e92e65df9?q=80&w=2070&auto=format&fit=crop',
+      img: consultoriaAmamentacaoImage,
       icon: <Heart size={24} />
     },
     { 
       title: 'Cursos', 
       desc: 'Capacitação essencial: Primeiros Socorros e Treinamento de Babá.',
-      img: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=2070&auto=format&fit=crop',
+      img: cursosImage,
       icon: <BookOpen size={24} />
     },
   ];
@@ -227,7 +232,7 @@ const Services = () => {
             <p className="text-[10px] uppercase tracking-[0.4em] font-bold text-brand-terracotta">Destaque</p>
             <h2 className="text-5xl md:text-7xl">Teste do <br /><span>Pezinho</span></h2>
             <p className="text-lg text-ink/70 font-light leading-relaxed">
-              Oferecemos 5 planos completos (Ampliado, Plus, Master, Ultra e Premium) para garantir a saúde do seu bebê desde os primeiros dias.
+              Oferecemos 5 planos completos para garantir a saúde do seu bebê desde os primeiros dias.
             </p>
             <Link to="/teste-do-pezinho" className="btn-pill bg-ink text-white inline-flex items-center gap-3 hover:bg-brand-terracotta">
               Ver Planos e Doenças <ChevronRight size={18} />
@@ -235,10 +240,9 @@ const Services = () => {
           </div>
           <div className="img-rounded aspect-video relative overflow-hidden">
             <img 
-              src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=2070&auto=format&fit=crop" 
+              src={pezinhosImage} 
               alt="Pezinho de bebê sendo preparado para o Teste do Pezinho - Mamatetê" 
               className="w-full h-full object-cover"
-              referrerPolicy="no-referrer"
             />
           </div>
         </div>
@@ -405,10 +409,9 @@ const Contact = () => {
 
           <div className="relative img-rounded aspect-square overflow-hidden">
             <img 
-              src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?q=80&w=2070&auto=format&fit=crop" 
+              src={babyImage} 
               alt="Ambiente acolhedor do consultório Mamatetê em Campo Grande" 
               className="w-full h-full object-cover"
-              referrerPolicy="no-referrer"
             />
             <div className="absolute inset-0 bg-brand-terracotta/10" />
             <div className="absolute inset-0 flex items-center justify-center">
