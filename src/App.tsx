@@ -496,7 +496,7 @@ export default function App() {
     <Router>
       <ScrollToTop />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/*" element={<Home />} />
         <Route path="/teste-do-pezinho" element={<TestePezinho />} />
         <Route path="/servicos" element={<ServicesPage />} />
       </Routes>
