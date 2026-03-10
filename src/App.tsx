@@ -235,7 +235,7 @@ const Services = () => {
               Oferecemos 5 planos completos para garantir a saúde do seu bebê desde os primeiros dias.
             </p>
             <Link to="/teste-do-pezinho" className="btn-pill bg-ink text-white inline-flex items-center gap-3 hover:bg-brand-terracotta">
-              Ver Planos e Doenças <ChevronRight size={18} />
+              Ver Planos <ChevronRight size={18} />
             </Link>
           </div>
           <div className="img-rounded aspect-video relative overflow-hidden">
