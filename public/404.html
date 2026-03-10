@@ -12,7 +12,11 @@
       // e.g. http://www.foo.tld/one/two?a=b#anchor becomes
       // http://www.foo.tld/?/one/two&a=b#anchor
       // Note: this script should run as early as possible in the 404.html
-      var pathSegmentsToKeep = 0;
+      // If we are on a github.io subdomain and not at the root, we need to keep the first segment (the repo name)
+      var pathSegmentsToKeep = window.location.hostname.indexOf('github.io') !== -1 && 
+                               window.location.pathname.split('/').filter(Boolean).length > 0 &&
+                               window.location.hostname.split('.')[0] !== window.location.pathname.split('/').filter(Boolean)[0]
+                               ? 1 : 0;
 
       var l = window.location;
       l.replace(
